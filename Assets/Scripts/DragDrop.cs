@@ -1,11 +1,12 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
+using System;
 
 [RequireComponent(typeof(RectTransform))]
 [RequireComponent(typeof(CanvasGroup))]
    
-public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerClickHandler
 {
     [SerializeField] private Canvas _canvas;
 
@@ -17,6 +18,8 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     private CanvasGroup _canvasGroup;
 
     private bool _isEquiped;
+
+    public event Action<DragDrop> Clicked;
 
     private void Awake()
     {
@@ -56,5 +59,10 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     public void SetEquiped(bool value)
     {
         _isEquiped = value;
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Clicked?.Invoke(this);
     }
 }
