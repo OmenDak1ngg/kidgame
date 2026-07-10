@@ -14,6 +14,8 @@ public class ClothingSlot : MonoBehaviour, IDropHandler
 
     public event Action<Clothing> WrongClothingSelected;
     public event Action CorrectClothingSelected;
+
+    public event Action<ClothingSlot, Clothing> ClothingSelected;
     private void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
@@ -24,17 +26,19 @@ public class ClothingSlot : MonoBehaviour, IDropHandler
         if (eventData.pointerDrag.TryGetComponent<Clothing>(out Clothing clothing) == false)
             return;
 
-        if(clothing.Type != _allowedType)
+        if (clothing.Type != _allowedType)
         {
             WrongClothingSelected?.Invoke(clothing);
             return;
         }
 
-        if (eventData.pointerDrag == null)
-            return;
+        ClothingSelected?.Invoke(this, clothing);
+    }
 
-        eventData.pointerDrag.GetComponent<RectTransform>().position = _rectTransform.position;
-        eventData.pointerDrag.GetComponent<DragDrop>().SetEquiped(true);
+    public void OnCorrectClothingSelected(Clothing clothing)
+    {
+        clothing.GetComponent<RectTransform>().position = _rectTransform.position;
+        clothing.GetComponent<DragDrop>().SetEquiped(true);
 
         CorrectClothingSelected?.Invoke();
     }

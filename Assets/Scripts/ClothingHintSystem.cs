@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class HintSystem : MonoBehaviour
+public class ClothingHintSystem : MonoBehaviour
 {
     [SerializeField] private ClothingSlot[] _clothingSlots;
 
@@ -34,7 +34,6 @@ public class HintSystem : MonoBehaviour
             slot.CorrectClothingSelected -= OnCorrectClothingSelected;
         }
     }
-
 
     private void Awake()
     {
