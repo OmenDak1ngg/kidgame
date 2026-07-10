@@ -22,6 +22,7 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
     {
         _isEquiped = false;
         _rectTransform = GetComponent<RectTransform>();
+        _rectTransform.position = _startPosition.position;
         _canvasGroup = GetComponent<CanvasGroup>();
     }
 
@@ -49,7 +50,7 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
         Vector2 onDropPosition = _rectTransform.position;
 
-        _rectTransform.DOAnchorPos(_startPosition.anchoredPosition, _returnDuration);
+        _rectTransform.DOAnchorPos(_startPosition.position, _returnDuration);
     }
 
     public void SetEquiped(bool value)
