@@ -1,0 +1,59 @@
+using UnityEngine;
+using UnityEngine.EventSystems;
+using DG.Tweening;
+
+[RequireComponent(typeof(RectTransform))]
+[RequireComponent(typeof(CanvasGroup))]
+   
+public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
+{
+    [SerializeField] private Canvas _canvas;
+
+    [SerializeField] private RectTransform _startPosition;
+
+    [SerializeField] private float _returnDuration = 1f;
+
+    private RectTransform _rectTransform;
+    private CanvasGroup _canvasGroup;
+
+    private bool _isEquiped;
+
+    private void Awake()
+    {
+        _isEquiped = false;
+        _rectTransform = GetComponent<RectTransform>();
+        _canvasGroup = GetComponent<CanvasGroup>();
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        _canvasGroup.alpha = 0.6f;
+        _canvasGroup.blocksRaycasts = false;
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        if (_isEquiped)
+            return;
+
+        _rectTransform.anchoredPosition += eventData.delta / _canvas.scaleFactor;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        _canvasGroup.blocksRaycasts = true;
+        _canvasGroup.alpha = 1f;
+
+        if(_isEquiped)
+            return;
+
+        Vector2 onDropPosition = _rectTransform.position;
+
+        _rectTransform.DOAnchorPos(_startPosition.anchoredPosition, _returnDuration);
+    }
+
+    public void SetEquiped(bool value)
+    {
+        _isEquiped = value;
+    }
+}
