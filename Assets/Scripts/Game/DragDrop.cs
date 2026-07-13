@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 using System;
+using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(RectTransform))]
 [RequireComponent(typeof(CanvasGroup))]
@@ -31,13 +32,16 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (PauseManager.IsPaused)
+            return;
+
         _canvasGroup.alpha = 0.6f;
         _canvasGroup.blocksRaycasts = false;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (_isEquiped)
+        if (_isEquiped || PauseManager.IsPaused)
             return;
 
         _rectTransform.anchoredPosition += eventData.delta / _canvas.scaleFactor;
@@ -45,6 +49,9 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (PauseManager.IsPaused)
+            return;
+
         _canvasGroup.blocksRaycasts = true;
         _canvasGroup.alpha = 1f;
 
