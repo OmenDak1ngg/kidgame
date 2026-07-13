@@ -17,6 +17,9 @@ public class UIButton : MonoBehaviour
 
     private void OnEnable()
     {
+        if (_button == null)
+            _button = GetComponent<Button>();
+
         _button.onClick.AddListener(OnClick);
     }
 

@@ -25,8 +25,7 @@ public class ClothingOrder : MonoBehaviour
         foreach (ClothingSlot slot in _slots)
         {
             slot.ClothingSelected -= OnClothingSelected;
-        }
-        
+        }       
     }
 
     private void Awake()

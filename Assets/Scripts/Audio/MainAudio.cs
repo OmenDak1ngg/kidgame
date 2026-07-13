@@ -8,10 +8,11 @@ public class MainAudio : MonoBehaviour
 
     private AudioSource _audioSource;
 
+    public float Volume => _audioSource.volume;
+
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
-        _slider.ChangeValue(_audioSource.volume);
     }
 
     private void OnEnable()

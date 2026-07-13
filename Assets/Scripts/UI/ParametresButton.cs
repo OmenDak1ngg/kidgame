@@ -1,14 +1,13 @@
-using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class SettingsButton : UIButton
+public class ParametresButton: UIButton
 {
-    [SerializeField] private WindowSettings _windowSettings;
+    [SerializeField] private ParametresWindow _windowSettings;
 
     protected override void OnClick()
     {
-        if(_windowSettings.gameObject.activeInHierarchy == false)
+        if (_windowSettings.gameObject.activeInHierarchy == false)
             _windowSettings.gameObject.SetActive(true);
         else
             _windowSettings.gameObject.SetActive(false);
