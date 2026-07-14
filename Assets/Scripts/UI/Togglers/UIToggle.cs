@@ -1,4 +1,6 @@
 using System;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,7 +32,10 @@ public class UIToggle : MonoBehaviour
     }
 
     public void ChangeValue(bool value, bool notify = true)
-    { 
+    {
+        if (_toggle == null)
+            _toggle = GetComponent<Toggle>();
+
         if(notify)
             _toggle.isOn = value;
         else

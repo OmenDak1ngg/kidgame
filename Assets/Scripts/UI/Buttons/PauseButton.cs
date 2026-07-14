@@ -7,6 +7,8 @@ public class PauseButton : UIButton
     [SerializeField] private Sprite _pausedSprite;
     [SerializeField] private Sprite _resumedSprite;
 
+    [SerializeField] private UIWindow _window;
+
     private Image _image;
 
     private void Awake()
@@ -19,11 +21,13 @@ public class PauseButton : UIButton
         if (PauseManager.IsPaused)
         {
             _image.sprite = _resumedSprite;
+            _window.gameObject.SetActive(false);
             PauseManager.Resume();
         }
         else 
         {
             _image.sprite = _pausedSprite;
+            _window.gameObject.SetActive(true);
             PauseManager.Pause();
         }
     }

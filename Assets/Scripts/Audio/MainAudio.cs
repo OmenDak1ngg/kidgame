@@ -25,8 +25,9 @@ public class MainAudio : MonoBehaviour
         _slider.ValueChanged -= ChangeVolume;   
     }
 
-    private void ChangeVolume(float value)
+    public void ChangeVolume(float value)
     {
-        _audioSource.volume = value;        
+        _audioSource.volume = value;
+        SaveSystem.SaveMainVolume(value);
     }
 }

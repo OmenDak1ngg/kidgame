@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(CanvasGroup))]
 [RequireComponent(typeof(RectTransform))]
-public class ClothingSlot : MonoBehaviour, IDropHandler, IPointerClickHandler
+public class ClothingSlot : MonoBehaviour, IDropHandler, IPointerClickHandler, IHiglightable
 {
     [SerializeField] private ClothingTypes _allowedType;
     [SerializeField] private bool _isClickMode = true;
@@ -53,20 +53,25 @@ public class ClothingSlot : MonoBehaviour, IDropHandler, IPointerClickHandler
     public void OnCorrectClothingSelected(Clothing clothing)
     {
         if (_isClickMode)
-        {
-            clothing.GetComponent<RectTransform>().DOAnchorPos(_rectTransform.position, 1f);
-        }
+            clothing.GetComponent<RectTransform>().DOAnchorPos(_rectTransform.anchoredPosition, 1f);
         else
-        {
             clothing.GetComponent<RectTransform>().position = _rectTransform.position;
-            clothing.GetComponent<DragDrop>().SetEquiped(true);
-        }
 
+        clothing.GetComponent<DragDrop>().SetEquiped(true);
         CorrectClothingSelected?.Invoke();
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         Clicked?.Invoke(this);
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (_rectTransform == null)
+            _rectTransform = GetComponent<RectTransform>();
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(_rectTransform.position, new Vector3(_rectTransform.rect.width, _rectTransform.rect.height, 0f));
     }
 }

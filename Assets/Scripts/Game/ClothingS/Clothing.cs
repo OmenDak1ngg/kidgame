@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(DragDrop))]
-public class Clothing : MonoBehaviour
+public class Clothing : MonoBehaviour, IHiglightable
 {
     [SerializeField] private ClothingTypes _type;
 

@@ -9,9 +9,7 @@ using System;
 public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerClickHandler
 {
     [SerializeField] private Canvas _canvas;
-
     [SerializeField] private RectTransform _startPosition;
-
     [SerializeField] private float _returnDuration = 1f;
 
     private RectTransform _rectTransform;
@@ -57,9 +55,7 @@ public class DragDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDrag
         if(_isEquiped)
             return;
 
-        Vector2 onDropPosition = _rectTransform.position;
-
-        _rectTransform.DOAnchorPos(_startPosition.position, _returnDuration);
+        _rectTransform.DOAnchorPos(_startPosition.anchoredPosition, _returnDuration);
     }
 
     public void SetEquiped(bool value)
