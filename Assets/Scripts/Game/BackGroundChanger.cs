@@ -20,10 +20,14 @@ public class BackGroundChanger : MonoBehaviour
         _toggle.Changed -= ChangeBackground;
     }
 
-    private void ChangeBackground(bool isChoosedAlternativeBackground)
+    public void ChangeBackground(bool isChoosedAlternativeBackground)
     {
         Sprite currentSprite = isChoosedAlternativeBackground ? _alternativeSprite : _mainSprite;
 
         _image.sprite = currentSprite;
+
+        SaveSystem.SaveBackgroundDisabled(isChoosedAlternativeBackground ? 1 : 0);
+
+        _toggle.ChangeValue(isChoosedAlternativeBackground, false);
     }
 }

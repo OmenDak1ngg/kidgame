@@ -1,19 +1,23 @@
 ﻿
+using System.Collections;
 using UnityEngine;
 
 public class HintSystem : MonoBehaviour
 {
-    [SerializeField] private int _wrongAttempts = 0;
     [SerializeField] private int _maxWrongAttemts = 3;
 
     [SerializeField] private AudioSource _audioSource;
 
+    [SerializeField] private Highlighter _highlighter;
+
+    private int _wrongAttempts;
+    
     private void Awake()
     {
         _wrongAttempts = 0;
     }
 
-    protected virtual void OnWrongSelected(IHiglightable obj)
+    protected virtual void OnWrongSelected(HighlightObject obj)
     {
         _wrongAttempts++;
         _wrongAttempts %= _maxWrongAttemts;
@@ -45,9 +49,9 @@ public class HintSystem : MonoBehaviour
         Debug.Log("одежда сама наделась на слот");
     }
 
-    protected virtual void HighlightCorrectSlot(IHiglightable obj)
+    protected virtual void HighlightCorrectSlot(HighlightObject obj)
     {
-        Debug.Log("подсветился нужный слот");
+        _highlighter.StartPulses(obj);
     }
 
     protected virtual void PlayVoiceHint()

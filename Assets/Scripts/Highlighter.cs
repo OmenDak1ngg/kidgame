@@ -1,18 +1,55 @@
 ﻿
+using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 
-public class Highlighter : MonoBehaviour
+internal class Highlighter : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem _particleSystem;
+    [SerializeField] private int _pulseCount;
+    [SerializeField] private float _maxThickness = 3f;
+    [SerializeField] private float _pulseTime = 1f;
+
+    private bool _isHighlighting;
+
+    private Coroutine _coroutine;
 
     private void Awake()
     {
-        _particleSystem.gameObject.SetActive(false);
+        _isHighlighting = false;
     }
 
-    private void Highlight(IHiglightable obj)
+    private void OnDisable()
     {
-      //  _particleSystem.transform.position = obj.GetPosition();
-        _particleSystem.gameObject.SetActive(true);
+        _isHighlighting = false;
+        StopCoroutine(_coroutine);    
     }
+
+    private IEnumerator EnablePulses(HighlightObject obj)
+    {
+        Tween pulseTween = DOTween.To(
+            () => obj.GetOutlineWidth(),          
+            x => obj.SetOutlineWidth(x),          
+            _maxThickness,                         
+            _pulseTime / 2f                    
+        )
+        .SetLoops(_pulseCount * 2, LoopType.Yoyo) 
+        .SetEase(Ease.InOutQuad);                
+
+        yield return pulseTween.WaitForCompletion();
+
+        obj.SetOutlineWidth(0f);
+        obj.Dehighlight();
+        _isHighlighting = false;
+    }
+
+    public void StartPulses(HighlightObject obj)
+    {
+        if (_isHighlighting)
+            return;
+
+        _isHighlighting = true;
+        obj.Highlight();
+        _coroutine = StartCoroutine(EnablePulses(obj));
+    }
+
 }

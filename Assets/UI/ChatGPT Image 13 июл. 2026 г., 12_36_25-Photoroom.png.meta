@@ -151,7 +151,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 2
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -189,7 +189,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -318,10 +318,10 @@ TextureImporter:
       name: "ChatGPT Image 13 \u0438\u044E\u043B. 2026 \u0433., 12_36_25-Photoroom_12"
       rect:
         serializedVersion: 2
-        x: 1190
-        y: 685
-        width: 141
-        height: 126
+        x: 1187
+        y: 683
+        width: 157
+        height: 133
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

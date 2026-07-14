@@ -1,11 +1,12 @@
 using DG.Tweening;
 using System;
+using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(CanvasGroup))]
 [RequireComponent(typeof(RectTransform))]
-public class ClothingSlot : MonoBehaviour, IDropHandler, IPointerClickHandler, IHiglightable
+public class ClothingSlot : HighlightObject, IDropHandler, IPointerClickHandler
 {
     [SerializeField] private ClothingTypes _allowedType;
     [SerializeField] private bool _isClickMode = true;
@@ -19,9 +20,10 @@ public class ClothingSlot : MonoBehaviour, IDropHandler, IPointerClickHandler, I
 
     public event Action<ClothingSlot> Clicked;
 
-    private void Awake()
+    protected override void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
+        base.Awake();
     }
 
     public void OnDrop(PointerEventData eventData)

@@ -25,4 +25,10 @@ public static class SaveSystem
         PlayerPrefs.SetInt(PrefsKeys.ChoosedAppearanceKey,number);
         PlayerPrefs.Save();
     }
+
+    public static void SaveBackgroundDisabled(int isEnabled) //0 - false 1 - true
+    {
+        PlayerPrefs.SetInt(PrefsKeys.BackgroundDisabledKey, isEnabled);
+        PlayerPrefs.Save();
+    }
 }
