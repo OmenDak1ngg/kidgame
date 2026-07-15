@@ -5,4 +5,6 @@
     public const string ChoosedClothingSetKey = "ChoosedClothingSet";
     public const string ChoosedAppearanceKey = "ChoosedAppearance";
     public const string BackgroundDisabledKey = "BackgroundDisabled";
+    public const string VoiceHintKey = "VoiceHint";
+    public const string OutlineEnabledKey = "OutlineEnabled";
 }

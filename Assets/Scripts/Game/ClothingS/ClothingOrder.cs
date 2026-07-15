@@ -56,4 +56,9 @@ public class ClothingOrder : MonoBehaviour
     {
         return _clothings.FirstOrDefault(clothing => clothing.Type == _slots[_currentIndex].AllowedType);
     }
+
+    public void IncreaseIndex()
+    {
+        _currentIndex++;
+    }
 }

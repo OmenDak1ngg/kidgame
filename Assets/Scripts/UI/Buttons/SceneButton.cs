@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PlaySeasoneButton : UIButton
+public class SceneButton : UIButton
 {
     [SerializeField] private string _sceneName;
 

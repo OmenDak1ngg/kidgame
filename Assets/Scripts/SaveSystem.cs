@@ -31,4 +31,16 @@ public static class SaveSystem
         PlayerPrefs.SetInt(PrefsKeys.BackgroundDisabledKey, isEnabled);
         PlayerPrefs.Save();
     }
+
+    public static void SaveVoiceHintIndex(int index)
+    {
+        PlayerPrefs.SetInt(PrefsKeys.VoiceHintKey, index);
+        PlayerPrefs.Save();
+    }
+
+    public static void SaveOutlineEnabled(int isEnable)//0 - false 1 - true
+    {
+        PlayerPrefs.SetInt(PrefsKeys.OutlineEnabledKey, isEnable);
+        PlayerPrefs.Save();
+    }
 }

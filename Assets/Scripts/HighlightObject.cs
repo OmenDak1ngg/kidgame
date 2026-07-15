@@ -24,7 +24,6 @@ public class HighlightObject : MonoBehaviour
 
         _image.material = _outlineMaterial;
         _isHighlighted = true;
-        Debug.Log(_image.material.name);
     }
 
     public void Dehighlight()

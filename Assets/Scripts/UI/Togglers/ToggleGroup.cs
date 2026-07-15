@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ToggleGroup : MonoBehaviour
 {
@@ -9,39 +8,44 @@ public class ToggleGroup : MonoBehaviour
 
     public event Action<int> ToggleChanged;
 
+    private readonly Dictionary<UIToggle, Action<bool>> _cachedActions = new Dictionary<UIToggle, Action<bool>>();
+
     private void OnEnable()
     {
         foreach (var toggle in _toggles)
         {
             if (toggle != null)
             {
-                toggle.Changed += OnToggleChanged;
+                UIToggle currentToggle = toggle;
+                Action<bool> action = (isOn) => OnToggleChanged(currentToggle, isOn);
+                _cachedActions[currentToggle] = action;
+                currentToggle.Changed += action;
             }
         }
     }
 
     private void OnDisable()
     {
-        foreach (var toggle in _toggles)
+        foreach (var pair in _cachedActions)
         {
+            UIToggle toggle = pair.Key;
+            Action<bool> action = pair.Value;
+
             if (toggle != null)
             {
-                toggle.Changed -= OnToggleChanged;
+                toggle.Changed -= action;
             }
         }
+
+        _cachedActions.Clear();
     }
 
-    private void OnToggleChanged(bool isOn)
+    private void OnToggleChanged(UIToggle sourceToggle, bool isOn)
     {
-        if (isOn)
+        if (isOn && sourceToggle != null)
         {
-            UIToggle sourceToggle = GetCurrentSender(); 
-
-            if (sourceToggle != null)
-            {
-                DeactivateOthers(sourceToggle);
-                ToggleChanged?.Invoke(_toggles.IndexOf(sourceToggle));
-            }
+            DeactivateOthers(sourceToggle);
+            ToggleChanged?.Invoke(_toggles.IndexOf(sourceToggle));
         }
     }
 
@@ -54,19 +58,6 @@ public class ToggleGroup : MonoBehaviour
                 toggle.ChangeValue(false, notify: false);
             }
         }
-    }
-
-    private UIToggle GetCurrentSender()
-    {
-        foreach (var toggle in _toggles)
-        {
-            if (toggle != null && toggle.GetComponent<Toggle>().isOn)
-            {
-                return toggle;
-            }
-        }
-
-        return null;
     }
 
     public void DeactivateAll()

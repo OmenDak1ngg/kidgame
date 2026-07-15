@@ -52,9 +52,9 @@ public class ClothingSlot : HighlightObject, IDropHandler, IPointerClickHandler
         ClothingSelected?.Invoke(this, clothing);
     }
 
-    public void OnCorrectClothingSelected(Clothing clothing)
+    public void OnCorrectClothingSelected(Clothing clothing, bool isAutoSelect = false)
     {
-        if (_isClickMode)
+        if (_isClickMode || isAutoSelect)
             clothing.GetComponent<RectTransform>().DOAnchorPos(_rectTransform.anchoredPosition, 1f);
         else
             clothing.GetComponent<RectTransform>().position = _rectTransform.position;

@@ -45,7 +45,8 @@ public class HintSystem : MonoBehaviour
 
     protected virtual void DressAutomatically()
     {
-        Debug.Log("одежда сама наделась на слот");
+        Order.GetCorrcetSlot().OnCorrectClothingSelected(Order.GetCorrectClothing(), true);
+        Order.IncreaseIndex();
     }
 
     protected virtual void HighlightCorrectObject()
