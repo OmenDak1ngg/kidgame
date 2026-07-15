@@ -12,6 +12,7 @@ public class HighlightObject : MonoBehaviour
 
     protected virtual void Awake()
     {
+        _isHighlighted = false;
         _image = GetComponent<Image>();
         _defaultMaterial = _image.material;
     }
@@ -20,9 +21,10 @@ public class HighlightObject : MonoBehaviour
     {
         if (_isHighlighted)
             return;
-   
-        _image.material = _outlineMaterial; 
+
+        _image.material = _outlineMaterial;
         _isHighlighted = true;
+        Debug.Log(_image.material.name);
     }
 
     public void Dehighlight()
@@ -36,7 +38,7 @@ public class HighlightObject : MonoBehaviour
 
     public float GetOutlineWidth()
     {
-        return _image.material.GetFloat("_OutlineWidth");
+        return _image.material.GetFloat("_OutlineWidth"); 
     }
 
     public void SetOutlineWidth(float width)

@@ -21,11 +21,15 @@ internal class Highlighter : MonoBehaviour
     private void OnDisable()
     {
         _isHighlighting = false;
+        if (_coroutine == null)
+            return;
+  
         StopCoroutine(_coroutine);    
     }
 
     private IEnumerator EnablePulses(HighlightObject obj)
     {
+        obj.Highlight();
         Tween pulseTween = DOTween.To(
             () => obj.GetOutlineWidth(),          
             x => obj.SetOutlineWidth(x),          
@@ -48,7 +52,6 @@ internal class Highlighter : MonoBehaviour
             return;
 
         _isHighlighting = true;
-        obj.Highlight();
         _coroutine = StartCoroutine(EnablePulses(obj));
     }
 

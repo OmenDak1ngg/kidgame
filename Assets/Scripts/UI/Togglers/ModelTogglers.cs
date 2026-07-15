@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Specialized;
 using UnityEngine;
+
 public class ModelTogglers : MonoBehaviour
 {
     [SerializeField] private UIToggle _firstToggle;

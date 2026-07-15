@@ -1,6 +1,4 @@
-﻿
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class HintSystem : MonoBehaviour
 {
@@ -9,6 +7,7 @@ public class HintSystem : MonoBehaviour
     [SerializeField] private AudioSource _audioSource;
 
     [SerializeField] private Highlighter _highlighter;
+    [SerializeField] protected ClothingOrder Order;
 
     private int _wrongAttempts;
     
@@ -17,7 +16,7 @@ public class HintSystem : MonoBehaviour
         _wrongAttempts = 0;
     }
 
-    protected virtual void OnWrongSelected(HighlightObject obj)
+    protected virtual void OnWrongSelected()
     {
         _wrongAttempts++;
         _wrongAttempts %= _maxWrongAttemts;
@@ -29,7 +28,7 @@ public class HintSystem : MonoBehaviour
                 break;
 
             case 2:
-                HighlightCorrectSlot(obj);
+                HighlightCorrectObject();
                 break;
 
             case 0:
@@ -49,7 +48,12 @@ public class HintSystem : MonoBehaviour
         Debug.Log("одежда сама наделась на слот");
     }
 
-    protected virtual void HighlightCorrectSlot(HighlightObject obj)
+    protected virtual void HighlightCorrectObject()
+    {
+        _highlighter.StartPulses(Order.GetCorrectClothing());
+    }
+
+    protected virtual void HighlightCorrectObject(HighlightObject obj)
     {
         _highlighter.StartPulses(obj);
     }

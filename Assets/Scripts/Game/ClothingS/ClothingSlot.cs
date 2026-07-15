@@ -1,6 +1,5 @@
 using DG.Tweening;
 using System;
-using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -11,10 +10,11 @@ public class ClothingSlot : HighlightObject, IDropHandler, IPointerClickHandler
     [SerializeField] private ClothingTypes _allowedType;
     [SerializeField] private bool _isClickMode = true;
 
-
     private RectTransform _rectTransform;
 
-    public event Action<Clothing> WrongClothingSelected;
+    public ClothingTypes AllowedType => _allowedType;
+
+    public event Action WrongClothingSelected;
     public event Action CorrectClothingSelected;
     public event Action<ClothingSlot, Clothing> ClothingSelected;
 
@@ -33,7 +33,7 @@ public class ClothingSlot : HighlightObject, IDropHandler, IPointerClickHandler
 
         if (clothing.Type != _allowedType)
         {
-            WrongClothingSelected?.Invoke(clothing);
+            WrongClothingSelected?.Invoke();
             return;
         }
 
@@ -45,7 +45,7 @@ public class ClothingSlot : HighlightObject, IDropHandler, IPointerClickHandler
     {
         if (clothing.Type != _allowedType)
         {
-            WrongClothingSelected?.Invoke(clothing);
+            WrongClothingSelected?.Invoke();
             return;
         }
 

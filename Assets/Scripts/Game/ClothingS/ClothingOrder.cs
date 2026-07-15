@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ClothingOrder : MonoBehaviour
 {
     [SerializeField] private List<ClothingSlot> _slots;
+    [SerializeField] private List<Clothing> _clothings;
 
     private int _currentIndex;
 
     public event Action SelectedCorrectClothing;
-    public event Action<ClothingSlot> SelectedWrongClothing;
+    public event Action SelectedWrongClothing;
 
     private void OnEnable()
     {
@@ -36,12 +38,22 @@ public class ClothingOrder : MonoBehaviour
     {
         if (_slots[_currentIndex] != slot)
         {
-            SelectedWrongClothing?.Invoke(slot);
+            SelectedWrongClothing?.Invoke();
             return;
         }
 
         _currentIndex++;
         slot.OnCorrectClothingSelected(clothing);
         SelectedCorrectClothing?.Invoke();
+    }
+
+    public ClothingSlot GetCorrcetSlot()
+    {
+        return _slots[_currentIndex];
+    }
+
+    public Clothing GetCorrectClothing()
+    {
+        return _clothings.FirstOrDefault(clothing => clothing.Type == _slots[_currentIndex].AllowedType);
     }
 }

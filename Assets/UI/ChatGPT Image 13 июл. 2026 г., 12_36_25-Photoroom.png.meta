@@ -230,10 +230,10 @@ TextureImporter:
       name: "ChatGPT Image 13 \u0438\u044E\u043B. 2026 \u0433., 12_36_25-Photoroom_0"
       rect:
         serializedVersion: 2
-        x: 61
-        y: 390
+        x: 63
+        y: 716
         width: 185
-        height: 463
+        height: 127
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -420,6 +420,94 @@ TextureImporter:
       bones: []
       spriteID: 1e26d107e1e5c4c00800000000000000
       internalID: 886186711508148961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "ChatGPT Image 13 \u0438\u044E\u043B. 2026 \u0433., 12_36_25-Photoroom_1"
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 594
+        width: 95
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed71761ecac31d64e9cc585a13f8a039
+      internalID: -3085995479662206126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "ChatGPT Image 13 \u0438\u044E\u043B. 2026 \u0433., 12_36_25-Photoroom_2"
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 446
+        width: 100
+        height: 150
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9804e0dbd49819541b22a91fe9a3f99f
+      internalID: -830279650577299212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "ChatGPT Image 13 \u0438\u044E\u043B. 2026 \u0433., 12_36_25-Photoroom_3"
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 391
+        width: 95
+        height: 55
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8362459f5755cb48a1e704e6c337df1
+      internalID: 3790867602955136796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "ChatGPT Image 13 \u0438\u044E\u043B. 2026 \u0433., 12_36_25-Photoroom_4"
+      rect:
+        serializedVersion: 2
+        x: 61
+        y: 382
+        width: 186
+        height: 467
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 892ad8a1ddfe2c144a2904230a88b47b
+      internalID: 3829476776422663663
       vertices: []
       indices: 
       edges: []
